@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "blagues_api"
+version = "1.0.0"
+description = "Official client for Blagues API"
+homepage = "https://www.blagues-api.fr/"
+authors = ["baptiste0928 <contact@baptiste0928.net>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/Blagues-API/package-py"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "^3.7"
+pydantic = "^1.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
