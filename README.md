@@ -7,7 +7,7 @@ Ce paquet Python fournit une interface simple pour intéragir avec [Blagues API]
 
 Vous pouvez simplement ajouter la dépendance à votre projet depuis PyPI :
 ```
-pip install blagues_api
+pip install blagues-api
 ```
 
 ## Utilisation
