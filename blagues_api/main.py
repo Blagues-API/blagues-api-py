@@ -6,6 +6,8 @@ from enum import Enum
 
 
 class BlagueType(str, Enum):
+    def __str__(self):
+        return str(self.value)
     GLOBAL = "global"
     DEV = "dev"
     DARK = "dark"
@@ -25,7 +27,7 @@ class BlaguesAPI:
     def __init__(self, token: str):
         self.token = token
     
-    async def random(self, *, disallow: List[str] = None) -> Blague:
+    async def random(self, *, disallow: List[BlagueType] = None) -> Blague:
         async with aiohttp.ClientSession(raise_for_status=True) as session:
             
             url = "https://www.blagues-api.fr/api/random"
