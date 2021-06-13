@@ -27,7 +27,7 @@ class BlaguesAPI:
     def __init__(self, token: str):
         self.token = token
     
-    async def random(self, *, disallow: List[BlagueType] = None) -> Blague:
+    async def random(self, *, disallow: List[str] = None) -> Blague:
         async with aiohttp.ClientSession(raise_for_status=True) as session:
             
             url = "https://www.blagues-api.fr/api/random"
