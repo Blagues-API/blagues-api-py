@@ -6,6 +6,8 @@ from enum import Enum
 
 
 class BlagueType(str, Enum):
+    def __str__(self):
+        return str(self.value)
     GLOBAL = "global"
     DEV = "dev"
     DARK = "dark"
