@@ -2,3 +2,4 @@ __pycache__/
 dist/
 poetry.lock
 .env
+.pytest_cache/
