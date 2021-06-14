@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "blagues_api"
-version = "1.0.0"
+version = "1.0.1"
 description = "Official client for Blagues API"
 homepage = "https://www.blagues-api.fr/"
-authors = ["baptiste0928 <contact@baptiste0928.net>"]
+authors = [
+  "baptiste0928 <contact@baptiste0928.net>",
+  "DraftMan <contact@draftman.fr>"
+]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/Blagues-API/package-py"
