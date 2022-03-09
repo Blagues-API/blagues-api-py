@@ -1,7 +1,19 @@
 import pytest
 
 from dotenv import dotenv_values
-from blagues_api import BlaguesAPI, Blague, BlagueType
+import os, platform
+import asyncio
+try:
+    from blagues_api import BlaguesAPI, Blague, BlagueType
+except ImportError:
+    try:
+        if platform.system().lower().startswith('win'):
+            os.system("pip install blagues-api")
+        else:
+            os.system("pip3 install blagues-api")
+    except Exception as e:
+        print("Package Installation Error:", e)
+        exit()
 
 pytestmark = pytest.mark.asyncio
 
