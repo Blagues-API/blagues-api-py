@@ -55,3 +55,10 @@ await blagues.random_categorized("dev")
 await blagues.from_id(20)
 # Blague(id=20, type=<BlagueType.GLOBAL: 'global'>, joke="Qu'est-ce qu'un chou au milieu de l'océan ?", answer='Un chou marin.')
 ```
+
+### Nombre de blagues
+
+```py
+await blagues.count()
+# JokeCount(count=1730)
+```
