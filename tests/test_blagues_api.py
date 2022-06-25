@@ -1,7 +1,8 @@
+from urllib import response
 import pytest
 
 from dotenv import dotenv_values
-from blagues_api import BlaguesAPI, Blague, BlagueType
+from blagues_api import BlaguesAPI, Blague, BlagueType, CountJoke
 
 pytestmark = pytest.mark.asyncio
 
@@ -16,7 +17,10 @@ def token():
 def client(token):
     return BlaguesAPI(token)
 
-
+async def count_joke(client):
+    response = await client.count()
+    assert isinstance(response, CountJoke)
+    
 async def test_random_joke(client):
     response = await client.random()
     assert isinstance(response, Blague)
