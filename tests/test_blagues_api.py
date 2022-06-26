@@ -17,10 +17,6 @@ def token():
 def client(token):
     return BlaguesAPI(token)
 
-async def count_joke(client):
-    response = await client.count()
-    assert isinstance(response, CountJoke)
-    
 async def test_random_joke(client):
     response = await client.random()
     assert isinstance(response, Blague)
@@ -42,3 +38,7 @@ async def test_from_id(client):
     response = await client.from_id(1)
     assert isinstance(response, Blague)
     assert response.id == 1
+
+async def count_joke(client):
+    response = await client.count()
+    assert isinstance(response, CountJoke)
