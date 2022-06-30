@@ -23,11 +23,13 @@ class Blague(pydantic.BaseModel):
     joke: str
     answer: str
 
+class JokeCount(pydantic.BaseModel):
+    count: int
 
 class BlaguesAPI:
     def __init__(self, token: str):
         self.token = token
-    
+
     async def random(self, *, disallow: List[str] = None) -> Blague:
         async with aiohttp.ClientSession(raise_for_status=True) as session:
             
@@ -63,3 +65,15 @@ class BlaguesAPI:
             async with session.get(url, headers=headers) as resp:
                 data = await resp.json()
                 return Blague.parse_obj(data)
+
+    async def count(self) -> JokeCount:
+        async with aiohttp.ClientSession(raise_for_status=True) as session:
+            
+            url = "https://www.blagues-api.fr/api/count"
+            
+            headers = {'Authorization': 'Bearer ' + self.token}
+            
+            async with session.get(url, headers=headers) as resp:
+                data = await resp.json()
+                return JokeCount.parse_obj(data)
+    
