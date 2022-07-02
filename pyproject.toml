@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "blagues_api"
-version = "1.0.1"
+version = "1.0.2"
 description = "Official client for Blagues API"
 homepage = "https://www.blagues-api.fr/"
 authors = [
