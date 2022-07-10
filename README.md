@@ -20,7 +20,7 @@ from blagues_api import BlaguesAPI
 blagues = BlaguesAPI("VOTRE_TOKEN_ICI")
 ```
 
-Toutes les méthodes renverront un objet `Blagues`, qui permet d'accéder aux différentes propriétés renvoyées par l'API : `id`, `type`, `joke`, `answer`. En cas d'erreur, vous recevrez une erreur du type [`aiohttp.ClientResponseError`](https://docs.aiohttp.org/en/stable/client_reference.html#aiohttp.ClientResponseError).
+Toutes les méthodes excepté count renverront un objet `Blague`, qui permet d'accéder aux différentes propriétés renvoyées par l'API : `id`, `type`, `joke`, `answer`. En cas d'erreur, vous recevrez une erreur du type [`aiohttp.ClientResponseError`](https://docs.aiohttp.org/en/stable/client_reference.html#aiohttp.ClientResponseError).
 
 Les différents types de blagues peuvent être représentés au choix sous forme d'un string ou d'un objet `BlagueType` (exemple: `BlagueType.GENERAL`). La liste des types disponibles est notée dans sur le site officiel.
 
@@ -62,3 +62,5 @@ await blagues.from_id(20)
 await blagues.count()
 # CountJoke(count=1730)
 ```
+
+La méthode ci-dessus renverra un objet `CountJoke`, qui permet d'accéder a la propriété renvoyée par l'API : `count`. En cas d'erreur, vous recevrez une erreur du type [`aiohttp.ClientResponseError`](https://docs.aiohttp.org/en/stable/client_reference.html#aiohttp.ClientResponseError).
