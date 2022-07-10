@@ -60,5 +60,5 @@ await blagues.from_id(20)
 
 ```py
 await blagues.count()
-# JokeCount(count=1730)
+# CountJoke(count=1730)
 ```
