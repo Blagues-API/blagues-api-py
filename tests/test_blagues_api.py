@@ -38,6 +38,7 @@ async def test_from_id(client):
     assert isinstance(response, Blague)
     assert response.id == 1
 
-async def count_joke(client):
+
+async def test_count_joke(client):
     response = await client.count()
     assert isinstance(response, CountJoke)
