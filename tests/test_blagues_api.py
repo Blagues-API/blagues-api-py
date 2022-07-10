@@ -1,4 +1,3 @@
-from urllib import response
 import pytest
 
 from dotenv import dotenv_values
