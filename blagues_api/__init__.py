@@ -1,1 +1,1 @@
-from .main import BlaguesAPI, BlagueType, Blague
+from .main import BlaguesAPI, BlagueType, CountJoke, Blague

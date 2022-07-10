@@ -2,7 +2,7 @@ from urllib import response
 import pytest
 
 from dotenv import dotenv_values
-from blagues_api import BlaguesAPI, Blague, BlagueType, CountJoke
+from blagues_api import BlaguesAPI, BlagueType, CountJoke, Blague
 
 pytestmark = pytest.mark.asyncio
 

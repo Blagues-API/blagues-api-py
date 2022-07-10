@@ -23,7 +23,7 @@ class Blague(pydantic.BaseModel):
     joke: str
     answer: str
 
-class JokeCount(pydantic.BaseModel):
+class CountJoke(pydantic.BaseModel):
     count: int
 
 class BlaguesAPI:
@@ -66,7 +66,7 @@ class BlaguesAPI:
                 data = await resp.json()
                 return Blague.parse_obj(data)
 
-    async def count(self) -> JokeCount:
+    async def count(self) -> CountJoke:
         async with aiohttp.ClientSession(raise_for_status=True) as session:
             
             url = "https://www.blagues-api.fr/api/count"
@@ -75,5 +75,5 @@ class BlaguesAPI:
             
             async with session.get(url, headers=headers) as resp:
                 data = await resp.json()
-                return JokeCount.parse_obj(data)
+                return CountJoke.parse_obj(data)
     
