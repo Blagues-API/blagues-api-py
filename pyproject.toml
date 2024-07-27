@@ -14,8 +14,8 @@ repository = "https://github.com/Blagues-API/package-py"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-aiohttp = "^3.7"
-pydantic = "^1.8"
+aiohttp = "^3.9.5"
+pydantic = "^2.8.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"

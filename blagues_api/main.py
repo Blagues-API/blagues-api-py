@@ -40,22 +40,22 @@ class BlaguesAPI:
         params = {"disallow": disallow} if disallow else {}
         data = await self._get(endpoint, params)
 
-        return Blague.parse_obj(data)
+        return Blague.model_validate(data)
 
     async def random_categorized(self, category: str) -> Blague:
         endpoint = f"/type/{category}/random"
         data = await self._get(endpoint)
 
-        return Blague.parse_obj(data)
+        return Blague.model_validate(data)
 
     async def from_id(self, id: int) -> Blague:
         endpoint = f"/id/{id}"
         data = await self._get(endpoint)
 
-        return Blague.parse_obj(data)
+        return Blague.model_validate(data)
 
     async def count(self) -> CountJoke:
         endpoint = "/count"
         data = await self._get(endpoint)
 
-        return CountJoke.parse_obj(data)
+        return CountJoke.model_validate(data)
