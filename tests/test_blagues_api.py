@@ -11,7 +11,6 @@ def token():
     env = dotenv_values(".env")
     return env["TOKEN"]
 
-
 @pytest.fixture
 def client(token):
     return BlaguesAPI(token)
