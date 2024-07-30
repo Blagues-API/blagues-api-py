@@ -1,0 +1,52 @@
+name: Publish to PyPI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    if: github.repository_owner == 'Blagues-API'
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    - name: Check if version changed
+      id: check_version
+      run: |
+        git diff HEAD^ HEAD -- pyproject.toml | grep '+version' && echo "version_changed=true" >> $GITHUB_OUTPUT || echo "version_changed=false" >> $GITHUB_OUTPUT
+
+    - uses: actions/setup-python@v5
+      if: steps.check_version.outputs.version_changed == 'true'
+      id: setup-python
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      if: steps.check_version.outputs.version_changed == 'true'
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+
+    - name: Load cached venv
+      if: steps.check_version.outputs.version_changed == 'true'
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Build
+      if: steps.check_version.outputs.version_changed == 'true'
+      run: poetry build
+
+    - name: Publish package distributions to PyPI
+      if: steps.check_version.outputs.version_changed == 'true'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        packages-dir: dist/
