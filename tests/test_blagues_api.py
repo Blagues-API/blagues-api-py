@@ -1,7 +1,7 @@
 import pytest
-
 from dotenv import dotenv_values
-from blagues_api import BlaguesAPI, BlagueType, CountJoke, Blague
+
+from blagues_api import Blague, BlaguesAPI, BlagueType, CountJoke
 
 pytestmark = pytest.mark.asyncio
 
@@ -11,9 +11,11 @@ def token():
     env = dotenv_values(".env")
     return env["TOKEN"]
 
+
 @pytest.fixture
 def client(token):
     return BlaguesAPI(token)
+
 
 async def test_random_joke(client):
     response = await client.random()
