@@ -35,6 +35,7 @@ class BlaguesAPI:
         self.headers = {"Authorization": f"Bearer {self.token}"}
 
     async def _get(self, url: str, params: dict = None) -> dict:
+        """Make a GET request to the API."""
         async with aiohttp.ClientSession(raise_for_status=True) as session:
             async with session.get(
                 self.base_url + url, headers=self.headers, params=params
@@ -42,6 +43,10 @@ class BlaguesAPI:
                 return await resp.json()
 
     async def random(self, *, disallow: List[str] = None) -> Blague:
+        """
+        Get a random joke.
+        Usage: random(disallow=['dev', 'dark',...])
+        """
         endpoint = "/random"
         params = {"disallow": disallow} if disallow else {}
         data = await self._get(endpoint, params)
@@ -49,18 +54,27 @@ class BlaguesAPI:
         return Blague.model_validate(data)
 
     async def random_categorized(self, category: str) -> Blague:
+        """
+        Get a random joke from a specific category.
+        Usage: random_categorized(category=BlagueType.DEV)
+        """
         endpoint = f"/type/{category}/random"
         data = await self._get(endpoint)
 
         return Blague.model_validate(data)
 
     async def from_id(self, id: int) -> Blague:
+        """
+        Get a joke from its ID.
+        Usage: from_id(1)
+        """
         endpoint = f"/id/{id}"
         data = await self._get(endpoint)
 
         return Blague.model_validate(data)
 
     async def count(self) -> CountJoke:
+        """Get the number of jokes available."""
         endpoint = "/count"
         data = await self._get(endpoint)
 
