@@ -1,16 +1,16 @@
 import pytest
-from dotenv import dotenv_values
+from dotenv import load_dotenv
+import os
 
 from blagues_api import Blague, BlaguesAPI, BlagueType, CountJoke
 
 pytestmark = pytest.mark.asyncio
 
+load_dotenv()
 
 @pytest.fixture
 def token():
-    env = dotenv_values(".env")
-    return env["TOKEN"]
-
+    return os.getenv("TOKEN")
 
 @pytest.fixture
 def client(token):
