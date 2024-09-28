@@ -8,9 +8,11 @@ pytestmark = pytest.mark.asyncio
 
 load_dotenv()
 
+
 @pytest.fixture
 def token():
     return os.getenv("TOKEN")
+
 
 @pytest.fixture
 def client(token):
