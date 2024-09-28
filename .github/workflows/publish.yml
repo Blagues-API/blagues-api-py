@@ -5,9 +5,15 @@ on:
     branches:
       - main
 
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: release
 
     if: github.repository_owner == 'Blagues-API'
     steps:
