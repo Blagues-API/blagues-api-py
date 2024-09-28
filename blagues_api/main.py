@@ -43,7 +43,8 @@ class BlaguesAPI:
                 return await resp.json()
 
     async def random(self, *, disallow: List[str] = None) -> Blague:
-        """Get a random joke.
+        """
+        Get a random joke.
         Usage: random(disallow=['dev', 'dark',...])
         """
         endpoint = "/random"
@@ -53,7 +54,8 @@ class BlaguesAPI:
         return Blague.model_validate(data)
 
     async def random_categorized(self, category: str) -> Blague:
-        """Get a random joke from a specific category.
+        """
+        Get a random joke from a specific category.
         Usage: random_categorized(category=BlagueType.DEV)
         """
         endpoint = f"/type/{category}/random"
@@ -62,7 +64,8 @@ class BlaguesAPI:
         return Blague.model_validate(data)
 
     async def from_id(self, id: int) -> Blague:
-        """Get a joke from its ID.
+        """
+        Get a joke from its ID.
         Usage: from_id(1)
         """
         endpoint = f"/id/{id}"
