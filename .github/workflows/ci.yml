@@ -12,11 +12,11 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         id: setup-python
         with:
-          python-version: '3.12'
+          python-version: '3.14'
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -26,7 +26,7 @@ jobs:
 
       - name: Load cached venv
         id: cached-poetry-dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -54,7 +54,7 @@ jobs:
         run: poetry run pytest --cov --cov-report=xml
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml

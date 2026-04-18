@@ -17,7 +17,7 @@ jobs:
 
     if: github.repository_owner == 'Blagues-API'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 2
 
@@ -26,11 +26,11 @@ jobs:
       run: |
         git diff HEAD^ HEAD -- pyproject.toml | grep '+version' && echo "version_changed=true" >> $GITHUB_OUTPUT || echo "version_changed=false" >> $GITHUB_OUTPUT
 
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v6
       if: steps.check_version.outputs.version_changed == 'true'
       id: setup-python
       with:
-        python-version: '3.12'
+        python-version: '3.14'
 
     - name: Install Poetry
       if: steps.check_version.outputs.version_changed == 'true'
@@ -42,7 +42,7 @@ jobs:
     - name: Load cached venv
       if: steps.check_version.outputs.version_changed == 'true'
       id: cached-poetry-dependencies
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: .venv
         key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -53,6 +53,6 @@ jobs:
 
     - name: Publish package distributions to PyPI
       if: steps.check_version.outputs.version_changed == 'true'
-      uses: pypa/gh-action-pypi-publish@release/v1
+      uses: pypa/gh-action-pypi-publish@v1
       with:
         packages-dir: dist/

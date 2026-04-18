@@ -5,3 +5,4 @@ poetry.lock
 .pytest_cache/
 .venv/
 coverage.xml
+.idea/
